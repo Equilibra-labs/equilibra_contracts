@@ -9,7 +9,7 @@
 [license]: https://opensource.org/licenses/MIT
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 
-A Foundry-based template for developing Solidity smart contracts, with sensible defaults.
+Una suite de foundry moldeada por los mismisimos _Dioses del Olimpo_; tallada con herramientas salidas de la forja de `Hefesto` con metales impregnados con las almas mas audazes que deambularon por el reino de `Hades`. 
 
 ## What's Inside
 
@@ -22,8 +22,8 @@ A Foundry-based template for developing Solidity smart contracts, with sensible 
 - [Prettier](https://github.com/prettier/prettier): code formatter for non-Solidity files
 - [Solhint Community](https://github.com/solhint-community/solhint-community): linter for Solidity code
 - ### Make dependencias
-- [Solady Contracts](https://github.com/Vectorized/solady) : A library of higly optimized & opinnioned contratcs (Make)
-- [Chainlink contracts](https://github.com/smartcontractkit/chainlink-brownie-contracts) : Libreria de contratos de chainlink (Make)
+- [OZ contracts](https://github.com/OpenZeppelin/openzeppelin-contracts) : Contratos de OZ comunes (Make)
+- [OZ upgradable contracts](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) : Los contratos de OZ que son `upgradeables` (Make)
 
 
 ## Getting Started
