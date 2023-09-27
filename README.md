@@ -1,4 +1,4 @@
-# Foundry Template [![Open in Gitpod][gitpod-badge]][gitpod]  [![Foundry][foundry-badge]][foundry] [![License: MIT][license-badge]][license]
+# Equilibra_Experimental [![Open in Gitpod][gitpod-badge]][gitpod]  [![Foundry][foundry-badge]][foundry] [![License: MIT][license-badge]][license]
 
 [gitpod]: https://gitpod.io/#https://github.com/dzkita/Foundry-Template
 [gitpod-badge]: https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-FFB45B?logo=gitpod
