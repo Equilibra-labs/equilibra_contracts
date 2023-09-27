@@ -9,13 +9,11 @@ import {UUPSUpgradeable} from "@oz-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {BeaconProxy} from "@oz/proxy/beacon/BeaconProxy.sol";
 import {UpgradeableBeacon} from "@oz/proxy/beacon/UpgradeableBeacon.sol";
 
-import {MimeToken, MimeTokenFactory} from "libr/mime/MimeTokenFactory.sol";
+import {MimeToken, MimeTokenFactory} from "mime-token/MimeTokenFactory.sol";
 
 import {OwnableProjectList} from "./projects/OwnableProjectList.sol";
 
 import {OsmoticPool, OsmoticParams} from "./OsmoticPool.sol";
-
-
 
 contract OsmoticController is Initializable, OwnableUpgradeable, PausableUpgradeable, UUPSUpgradeable {
     uint256 public immutable version;
@@ -26,41 +24,9 @@ contract OsmoticController is Initializable, OwnableUpgradeable, PausableUpgrade
 
     uint256 public claimDuration;
 
-    /**
-     * @notice Aca mover todos estos a un struct con unico mapping ybagregar getters 
-     * @custom:razon := Para no ocupar slots de memoria al pedo
-     *  mapping(address => bool) public isPool;
-     *  mapping(address => bool) public isList
-     *  mapping(address => bool) public isToken
-     * @custom:problema De la forma anterior se ocupan 3 slots de memoria diferentes con un solo byte ocupado (de 32)
-     * @custom:sol Armamos un struct que contenga las 3 variables y las poenmos en el mismo mapping, asi ocupamos 3/32 de un unico slot de memoria.
-     * Agregamos los getters, con el mismo nombre y funcion. Esto no modifica mucho el bytecode del contrato ya que al hacer un mapping `public` le carga un bytecode interesante para devolver el valor
-     * 
-    */
-    struct AddrInfo {
-        // Slot0 := 3/32 bytes
-        bool isPool;
-        bool isList;
-        bool isToken;
-    }
-
-
-
-    mapping (address => AddrInfo) internal addressInfo;
-
-    function isPool(address _poolAddr)external view  returns (bool) {
-        return addressInfo[_poolAddr].isPool;
-    }
-    function isList(address _listAddr)external view  returns (bool) {
-        return addressInfo[_listAddr].isList;
-    }
-    function isToken(address _tokenAdd)external view  returns (bool) {
-        return addressInfo[_poolA_tokenAddddr].isToken;
-    }
-    function getAddInfo(address _addr) external view returns (AddrInfo memory) {
-        return addressInfo[_addr];
-    }
-
+    mapping(address => bool) public isPool;
+    mapping(address => bool) public isList;
+    mapping(address => bool) public isToken;
 
     /* *************************************************************************************************************************************/
     /* ** Events                                                                                                                         ***/
@@ -90,9 +56,7 @@ contract OsmoticController is Initializable, OwnableUpgradeable, PausableUpgrade
 
         claimDuration = _claimDuration;
         // We set the registry as the default list
-        // AddrInfo memory _addInfo= AddrInfo(false,false,false);
-        // _addInfo.isList=true;
-        addressInfo[projectRegistry].isList= true;
+        isList[projectRegistry] = true;
     }
 
     /* *************************************************************************************************************************************/
@@ -137,13 +101,8 @@ contract OsmoticController is Initializable, OwnableUpgradeable, PausableUpgrade
         list_ = address(new OwnableProjectList(projectRegistry, _name));
 
         OwnableProjectList(list_).transferOwnership(msg.sender);
-        
-        // AddrInfo memory _addInfo= AddrInfo(false,false,false);
-        // _addInfo.isList=true;
-        // addressInfo[list_]= _addInfo;
-        addressInfo[pool_].isList= true;
 
-        // isList[list_] = true;
+        isList[list_] = true;
 
         emit ProjectListCreated(list_);
     }
@@ -153,12 +112,7 @@ contract OsmoticController is Initializable, OwnableUpgradeable, PausableUpgrade
 
         OsmoticPool(pool_).transferOwnership(msg.sender);
 
-        // AddrInfo memory _addInfo= AddrInfo(false,false,false);
-        // _addInfo.isPool=true;
-        // addressInfo[pool_]= _addInfo;
-        addressInfo[pool_].isPool= true;
-
-        // isPool[pool_] = true;
+        isPool[pool_] = true;
 
         emit OsmoticPoolCreated(pool_);
     }
@@ -173,9 +127,7 @@ contract OsmoticController is Initializable, OwnableUpgradeable, PausableUpgrade
 
         MimeToken(token_).transferOwnership(msg.sender);
 
-        // isToken[token_] = true;
-        addressInfo[token_].isToken= true;
-
+        isToken[token_] = true;
 
         emit MimeTokenCreated(token_);
     }
