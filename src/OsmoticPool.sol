@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 import {OwnableUpgradeable} from "@oz-upgradeable/access/OwnableUpgradeable.sol";
 import {Initializable} from "@oz-upgradeable/proxy/utils/Initializable.sol";
 
-// import {IMimeToken} from "mime-token/interfaces/IMimeToken.sol";
+import {IMimeToken} from "mime-token/interfaces/IMimeToken.sol";
 import {ISuperToken} from "./interfaces/ISuperToken.sol";
 
 import {ICFAv1Forwarder} from "./interfaces/ICFAv1Forwarder.sol";
@@ -26,12 +26,9 @@ struct ProjectSupport {
     int256 deltaSupport;
 }
 
-/**
- * @notice Aca hacer um leve cambio en lso mappings presentes asi no hay mappings duplicados
- * @dev Sacar `projectSupportAt` de `PoolProject` y ponerlo en `totalSupportAt`?
- */
-
 struct PoolProject {
+    // round => project support
+    mapping(uint256 => uint256) projectSupportAt;
     uint256 flowLastRate;
     uint256 flowLastTime;
     bool active;
@@ -57,14 +54,8 @@ contract OsmoticPool is Initializable, OwnableUpgradeable, OsmoticFormula {
     // projectId => PoolProject
     mapping(uint256 => PoolProject) public poolProjects;
 
-    struct RoundData {
-        uint totalSupport;
-        mapping(uint projectId=>uint support) projectSupportAt;
-    }
-
-    // round => total support (y se ve a cada Id cual es va que cantidad de teca)
-    mapping(uint256 => RoundData) private totalSupportAt;
-    // mapping(uint256 => uint256) private totalSupportAt;
+    // round => total support
+    mapping(uint256 => uint256) private totalSupportAt;
     // round => participant => total support
     mapping(uint256 => mapping(address => uint256)) private totalParticipantSupportAt;
 
