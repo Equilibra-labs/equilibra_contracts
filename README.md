@@ -9,7 +9,7 @@
 [license]: https://opensource.org/licenses/MIT
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 
-Una suite de foundry moldeada por los mismisimos _Dioses del Olimpo_; tallada con herramientas salidas de la forja de `Hefesto` con metales impregnados con las almas mas audazes que deambularon por el reino de `Hades`. 
+Una suite de foundry moldeada por los mismisimos `Dioses del Olimpo`; tallada con herramientas salidas de la forja de _Hefesto_ con metales impregnados con las almas mas audazes que deambularon por el reino de _Hades_. 
 
 ## What's Inside
 
@@ -24,6 +24,10 @@ Una suite de foundry moldeada por los mismisimos _Dioses del Olimpo_; tallada co
 - ### Make dependencias
 - [OZ contracts](https://github.com/OpenZeppelin/openzeppelin-contracts) : Contratos de OZ comunes (Make)
 - [OZ upgradable contracts](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) : Los contratos de OZ que son `upgradeables` (Make)
+- ### Librerias internas
+- [mime-token](https://github.com/BlossomLabs/mime-token/tree/985190d3228f1cd1b5197063db15945018bea3bc)
+- [ABDKMath](https://github.com/abdk-consulting/abdk-libraries-solidity/tree/5e1e7c11b35f8313d3f7ce11c1b86320d7c0b554)
+- [upgrade-scripts](https://github.com/BlossomLabs/upgrade-scripts/tree/9b17df46f45b0420409a032bc70b66f6ac704445)
 
 
 ## Getting Started
