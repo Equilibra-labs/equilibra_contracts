@@ -1,0 +1,4 @@
+install-all:
+	forge install https://github.com/vectorized/solady --no-commit
+	forge install https://github.com/smartcontractkit/chainlink-brownie-contracts@0.7.1 --no-commit
+  
