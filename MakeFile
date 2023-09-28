@@ -1,4 +1,4 @@
 install-all:
 	forge install https://github.com/OpenZeppelin/openzeppelin-contracts --no-commit
 	forge install https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit
-  
+  forge install https://github.com/0xPhaze/upgrade-scripts --no-commit  
