@@ -30,18 +30,13 @@ Una suite de foundry moldeada por los mismisimos `Dioses del Olimpo`; tallada co
 - [upgrade-scripts](https://github.com/BlossomLabs/upgrade-scripts/tree/9b17df46f45b0420409a032bc70b66f6ac704445)
 
 
-## Getting Started
 
-Click the [`Use this template`](https://github.com/PaulRBerg/foundry-template/generate) button at the top of the page to
-create a new repository with this repo as the initial state.
-
-Or, if you prefer to install the template manually:
 
 ```sh
-$ mkdir my-project
-$ cd my-project
-$ forge init --template PaulRBerg/foundry-template
+$ git clone https://github.com/Equilibra-labs/equilibra_contracts
+$ cd equilibra_contracts
 $ pnpm install # install Solhint, Prettier, and other Node.js deps
+$ forge install
 $ make install-all # opcional, instala las dependencias marcadas arriba con `(Make)` al final
 ```
 
